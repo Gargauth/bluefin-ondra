@@ -24,4 +24,13 @@ modules:
       - brave-browser
       - bcompare
 
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: script
+    scripts:
+      - brave-custom-launcher.sh
+
   - type: signing

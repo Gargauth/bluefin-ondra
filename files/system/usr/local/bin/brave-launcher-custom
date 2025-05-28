@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"${HOME}/.config"}"
+CONF_FILE="${XDG_CONFIG_HOME}/brave-flags.conf"
+FLAG_LIST=() # Explicitly initialize as an empty array
+
+# Load configuration
+if [[ -f "${CONF_FILE}" ]]; then
+    # Read non-empty lines that don't start with # (and optional leading whitespace)
+    # into FLAG_LIST array
+    mapfile -t FLAG_LIST < <(grep -Ev '^[[:space:]]*(#|$)' "${CONF_FILE}")
+fi
+
+export CHROME_VERSION_EXTRA='stable'
+
+# Direct path to the actual Brave executable
+# This is more robust than relying on another symlink we might have moved
+BRAVE_REAL_EXEC="/opt/brave.com/brave/brave"
+
+# Check if the real executable exists
+if [[ ! -x "${BRAVE_REAL_EXEC}" ]]; then
+    echo "Error: Brave real executable not found at ${BRAVE_REAL_EXEC}" >&2
+    # We could try an alternative path here or exit with an error
+    # For simplicity, we exit now
+    exit 1
+fi
+
+# For debugging, you can uncomment this:
+# echo "Executing: ${BRAVE_REAL_EXEC}" "${FLAG_LIST[@]}" "$@" >&2
+
+exec "${BRAVE_REAL_EXEC}" "${FLAG_LIST[@]}" "$@"
