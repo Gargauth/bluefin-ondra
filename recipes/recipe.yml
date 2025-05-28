@@ -26,8 +26,8 @@ modules:
 
   - type: files
     files:
-      - source: system/usr/local/bin
-        destination: /usr/local/bin
+      - source: system/usr/local/bin/brave-launcher-custom
+        destination: /usr/libexec/brave-launcher-custom
 
   - type: script
     scripts:

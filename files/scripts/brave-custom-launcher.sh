@@ -2,7 +2,7 @@
 set -ouex pipefail
 
 # Path to our custom launcher script
-CUSTOM_LAUNCHER_SCRIPT="/usr/local/bin/brave-launcher-custom"
+CUSTOM_LAUNCHER_SCRIPT="/usr/libexec/brave-launcher-custom"
 
 # List of standard paths to Brave binaries/symlinks we want to replace.
 # Find out exactly what files the brave-browser package installs into /usr/bin
