@@ -3,7 +3,7 @@ name: bluefin-ondra
 description: bluefin-dx for me
 
 base-image: ghcr.io/ublue-os/bluefin-dx
-image-version: stable
+image-version: gts
 
 modules:
   - type: bling
