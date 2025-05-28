@@ -26,8 +26,8 @@ modules:
 
   - type: files
     files:
-      - source: system
-        destination: /
+      - source: system/usr/local/bin
+        destination: /usr/local/bin
 
   - type: script
     scripts:
