@@ -16,10 +16,16 @@ declare -a BRAVE_TARGET_PATHS=(
 echo "Setting up custom launcher for Brave..."
 
 # Ensure our custom launcher script exists and is executable
+# Attempt to set execute permissions first.
+if [ -f "${CUSTOM_LAUNCHER_SCRIPT}" ]; then
+    chmod +x "${CUSTOM_LAUNCHER_SCRIPT}"
+else
+    echo "Error: Custom launcher ${CUSTOM_LAUNCHER_SCRIPT} not found."
+    exit 1
+fi
+
 if [ ! -x "${CUSTOM_LAUNCHER_SCRIPT}" ]; then
-    echo "Error: Custom launcher ${CUSTOM_LAUNCHER_SCRIPT} not found or not executable."
-    # We could try to set permissions here, but it should already be set by the 'files' module
-    # chmod +x "${CUSTOM_LAUNCHER_SCRIPT}"
+    echo "Error: Custom launcher ${CUSTOM_LAUNCHER_SCRIPT} is not executable even after chmod."
     exit 1
 fi
 
